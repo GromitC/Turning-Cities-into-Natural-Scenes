@@ -58,7 +58,7 @@ void main() {
     //    texInterp = vec4(clamp(1.0f - abs(newY - 0)/100.0f, 0, 0.5), clamp(1.0f - abs(newY - 50)/150.0f, 0, 1), clamp(1.0f - abs(newY - 100)/150.0f, 0, 0.5), 2);
     //}
     //else{
-    texInterp = vec4(clamp(1.0f - abs(newY - 0)/100.0f, 0, 1), clamp(1.0f - abs(newY - 50)/150.0f, 0, 0.5), clamp(1.0f - abs(newY - 100)/150.0f, 0, 0.5), clamp(1.0f - abs(newY - 150)/150.0f, 0.3, 1));
+    texInterp = vec4(clamp(1.0f - abs(newY - 0)/100.0f, 0, 1), clamp(1.0f - abs(newY - 50)/150.0f, 0, 1), clamp(1.0f - abs(newY - 100)/150.0f, 0, 0.5), clamp(1.0f - abs(newY - 150)/150.0f, 0.3, 1));
     //}
 
     texInterp = texInterp / (texInterp.x + texInterp.y + texInterp.z + texInterp.w);

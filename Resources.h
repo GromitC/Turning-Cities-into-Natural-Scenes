@@ -46,12 +46,16 @@ public:
 
     static unsigned char* ReadFileSource(const char* shaderFile, long &size);
 
+
 private:
 	
 	void loadVAO(int loc, int size, float* data);
 
     std::map<std::string, GLTexture> _textureCache;
     std::map<std::string, GLObj> _objectCache;
+
+    GLuint active_vbo;
+
 
     GLTexture loadPNG(std::string filename);
     GLObj loadObj(std::string filename, GLSLShader* shader, bool tex, std::vector<std::string> textureFiles, std::vector<std::string> textureLocs);

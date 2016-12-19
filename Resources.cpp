@@ -12,21 +12,6 @@ Resources::~Resources() {
 
 }
 
-// GLTexture Resources::GetTexture(std::string texturePath) {
-
-//     auto text = _textureCache.find(texturePath);
-
-//     // Load and insert if not in cache
-//     if (text == _textureCache.end()) {
-//         cout<<"load texture"<<endl;
-//         GLTexture newTexture = loadPNG(texturePath);
-//         _textureCache.insert(std::make_pair(texturePath, newTexture));
-
-//         return newTexture;
-//     }
-
-//     return text->second;
-// }
 
 GLObj Resources::GetObject(std::string objectPath, GLSLShader* shader, bool tex, std::vector<std::string> textureFiles, std::vector<std::string> textureLocs,int mode,bool forceReload) {
 
@@ -101,6 +86,8 @@ GLuint Resources::MakeVAO(GLSLShader* shader, float* vp, float* vn, float* vt, i
     glGenBuffers (1, &vbo);
     glBindBuffer (GL_ARRAY_BUFFER, vbo);
     glBufferData (GL_ARRAY_BUFFER, sizeof (GLfloat) * 3 * size, vp, GL_STATIC_DRAW);
+
+    active_vbo=vbo;
 
     GLuint vbo_norm;
     glGenBuffers (1, &vbo_norm);
@@ -335,7 +322,7 @@ bool Resources::ParseTerrain(std::string heightmap,float*& _vertices,float*& _te
         {
             dummy++;
             unsigned int index = ( i * _width ) + j;
-            float heightValue = out[index * 4] / 256.0;
+            float heightValue = (out[index * 4] / 256.0);
  
             float X = (i / (float)(_width ) )-0.5f;
             float Z = ( j / (float)(_length) )-0.5f;

@@ -13,6 +13,7 @@ vector<string> terTexts2;
 int textureChoice=2;
 int currentChoice=2;
 
+
 void KeyboardCallback(GLFWwindow* window, int key, int code, int action, int mods) {
 
     if(action == GLFW_PRESS){
@@ -67,7 +68,7 @@ void KeyboardCallback(GLFWwindow* window, int key, int code, int action, int mod
             break;
         case GLFW_KEY_RIGHT:
             lightX+=1;
-            break;               
+            break;              
 
     }
     }
@@ -112,6 +113,7 @@ Display::Display(int w, int h, const char* title) :
 
 
     glClearColor(28.0f/255.0f,144.0f/255.0f,153.0f/255.0f, 0);
+    //glClearColor(1,1,1, 0);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glEnable(GL_TEXTURE_2D);
@@ -214,6 +216,7 @@ void Display::displayLoop() {
                 _resManager.GetObject(terrainFile, &_terrainShader, tex&&terTexts1.size() > 0, terTexts1, terLocs,mode,true);
                 currentChoice=textureChoice;
             }
+
             renderObj(_terrainShader, terrainFile, terTexts1, terLocs);            
         }
 
@@ -279,9 +282,9 @@ void Display::renderObj(GLSLShader shader, string objPath, vector<string> textur
     if(mode==1){
 	glDrawArrays(GL_TRIANGLES, 0, model.size);
     }else{
-        // for (int i=0;i<512;i++)
+         for (int i=0;i<512*2;i++)
         //     glDrawArrays(GL_TRIANGLE_STRIP, i*512, 512);  
-        glDrawArrays(GL_LINE_STRIP, 0, model.size);
+        glDrawArrays(GL_LINE_STRIP, i*512, 512);
     }
 	
 	// Unbind
